@@ -1,196 +1,88 @@
-# Base de données des documentations
+# DocBase 📚
 
-Un projet permettant de centraliser et organiser diverses documentations techniques.
+Base de données centralisée pour organiser vos documentations techniques avec React et Vite.
 
-## Description
+## 🚀 Installation rapide
 
-Ce projet vise à créer une base de données accessible et bien organisée de documentations techniques, tutoriels et ressources utiles pour les développeurs, en utilisant React et Vite.
+```bash
+git clone https://github.com/votre-username/docBase.git
+cd docBase
+npm install
+npm run dev
+```
 
-## Installation
+Ouvrez `http://localhost:3000` dans votre navigateur.
 
-Pour installer ce projet, suivez les étapes ci-dessous :
-
-1. Clonez le repository :
-
-   ```bash
-   git clone https://github.com/votre-username/docBase.git
-   cd docBase
-   ```
-
-2. Installez les dépendances :
-
-   ```bash
-   npm install
-   ```
-
-3. Démarrez le serveur de développement :
-
-   ```bash
-   npm run dev
-   ```
-
-4. Ouvrez votre navigateur à l'adresse `http://localhost:3000`.
-
-## Comment contribuer
-
-### Prérequis
-
-- Connaissances de base en HTML/CSS et JavaScript
-- Familiarité avec React et Vite
-- Connaissances de base en Git et GitHub
-- Un éditeur de texte ou IDE
-
-### Étapes pour contribuer
-
-1. **Fork** ce repository
-2. **Clone** votre fork localement :
-
-   ```bash
-   git clone https://github.com/votre-username/docBase.git
-   cd docBase
-   ```
-
-3. **Créez une branche** pour votre contribution :
-
-   ```bash
-   git checkout -b ajout-documentation-[nom-du-sujet]
-   ```
-
-4. **Ajoutez votre documentation** dans le dossier `src/docs/` en suivant la structure du projet.
-
-5. **Testez** vos modifications en ouvrant `public/index.html` dans un navigateur.
-
-6. **Commit** vos changements :
-
-   ```bash
-   git add .
-   git commit -m "Ajout documentation: [description]"
-   ```
-
-7. **Push** vers votre fork :
-
-   ```bash
-   git push origin ajout-documentation-[nom-du-sujet]
-   ```
-
-8. **Créez une Pull Request** depuis GitHub.
-
-### Structure du projet
+## 📁 Structure du projet
 
 ```
 docBase/
-├── public
-│   └── index.html          # Page principale
-├── src
-│   ├── assets              # Dossier pour les ressources
-│   ├── components          # Composants React
-│   ├── docs                # Dossier pour les documentations
-│   ├── templates           # Templates pour nouvelles docs
-│   ├── App.tsx             # Composant principal
-│   ├── main.tsx            # Point d'entrée de l'application
-│   └── index.css           # Styles globaux
-├── package.json            # Configuration npm
-├── tsconfig.json           # Configuration TypeScript
-├── vite.config.ts          # Configuration Vite
-└── README.md               # Ce fichier
+├── src/
+│   ├── components/         # Composants React
+│   ├── docs/              # Vos documentations (.md)
+│   ├── assets/            # Images et ressources
+│   └── templates/         # Templates de documentation
+├── index.html             # Point d'entrée
+└── package.json           # Configuration
 ```
 
-## Comment ajouter une documentation
+## ➕ Ajouter une documentation
 
-### Méthode 1 : Ajouter une documentation locale
+### Documentation locale (fichier .md)
+1. Créez un fichier dans `src/docs/` : `touch src/docs/mon-guide.md`
+2. Ajoutez dans `DocumentationList.tsx` :
+```typescript
+{
+  title: "Votre Titre",
+  description: "Description courte et claire",
+  link: "/docs/mon-guide.md"
+}
+```
 
-1. **Créez votre fichier de documentation** dans le dossier `src/docs/` :
-   ```bash
-   # Exemple
-   touch src/docs/mon-guide.md
-   ```
+### Documentation externe (lien web)
+```typescript
+{
+  title: "Nom de la ressource",
+  description: "Description de la ressource",
+  link: "https://lien-externe.com"
+}
+```
 
-2. **Écrivez votre documentation** en Markdown :
-   ```markdown
-   # Titre de votre documentation
-   
-   Description courte de ce que couvre cette documentation.
-   
-   ## Section 1
-   Contenu de votre documentation...
-   ```
-
-3. **Ajoutez la documentation à la liste** en modifiant `src/components/DocumentationList.tsx` :
-   ```typescript
-   const defaultDocs: DocumentationItem[] = [
-     // ... autres documentations
-     {
-       title: "Votre Titre",
-       description: "Description courte et claire de votre documentation",
-       link: "/docs/mon-guide.md"
-     }
-   ];
-   ```
-
-### Méthode 2 : Ajouter un lien vers une documentation externe
-
-1. **Modifiez** `src/components/DocumentationList.tsx` :
-   ```typescript
-   {
-     title: "Nom de la ressource",
-     description: "Description de ce que contient cette ressource",
-     link: "https://lien-vers-la-documentation.com"
-   }
-   ```
-
-### Guidelines pour ajouter une documentation
-
-1. **Format** : Privilégiez le format Markdown (.md) pour les docs locales
-2. **Nommage** : Utilisez des noms de fichiers descriptifs (ex: `git-commands.md`)
-3. **Structure** : Incluez un titre, une description, et des exemples pratiques
-4. **Description** : Écrivez une description claire et concise (1-2 phrases maximum)
-5. **Liens** : Ajoutez votre documentation dans le composant `DocumentationList`
-6. **Images** : Placez les images dans le dossier `src/assets/images/`
-
-### Exemple de structure d'une documentation
+## 📝 Format recommandé
 
 ```markdown
-# Guide des commandes Git
+# Titre de votre documentation
 
-Ce guide présente les commandes Git les plus utilisées au quotidien.
+Description courte de ce que couvre cette documentation.
 
-## Commandes de base
+## Section 1
+Contenu de votre documentation...
 
-### git add
-Ajoute des fichiers à l'index...
+## Exemples
+```bash
+commande-exemple
+```
+```
 
-### git commit
-Enregistre les modifications...
-
-## Exemples pratiques
+## 🔧 Scripts disponibles
 
 ```bash
-git add .
-git commit -m "Ajout d'une nouvelle fonctionnalité"
-```
+npm run dev      # Démarre le serveur de développement
+npm run build    # Construit la version de production
+npm run serve    # Prévisualise la build de production
 ```
 
-### Types de contributions recherchées
+## 📋 Types de contributions
 
 - Documentations techniques (frameworks, langages, outils)
 - Tutoriels pas-à-pas
 - Guides de bonnes pratiques
 - Ressources utiles et liens externes
-- Améliorations de l'interface utilisateur
-- Corrections de bugs ou typos
 
-## Règles de contribution
+## 📄 Licence
 
-- Vérifiez que votre documentation n'existe pas déjà
-- Utilisez un français correct et professionnel
-- Testez vos liens et exemples de code
-- Respectez les droits d'auteur
-- Citez vos sources quand nécessaire
-
-## Contact
-
-Pour toute question concernant les contributions, n'hésitez pas à ouvrir une issue sur GitHub.
+MIT License - Libre d'utilisation et de modification.
 
 ---
 
-Merci de contribuer à rendre la documentation plus accessible à tous ! 🚀
+🚀 **Contribuez pour rendre la documentation plus accessible !**
